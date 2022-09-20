@@ -33,8 +33,8 @@ RUN adduser -S pocketbase-nextjs-template -u 1001
 
 RUN apk --no-cache add ca-certificates
 
-COPY --from=build-frontend --chown=pocketbase-nextjs-template:pocketbase-nextjs-template /app/out ./public
-COPY --from=build-backend --chown=pocketbase-nextjs-template:pocketbase-nextjs-template /go/src/github.com/natrongmbh/pocketbase-nextjs-template ./
+COPY --from=build-frontend --chown=pocketbase-nextjs-template:pocketbase-nextjs-template /app/out ./web
+COPY --from=build-backend --chown=pocketbase-nextjs-template:pocketbase-nextjs-template /go/src/github.com/natrongmbh/pocketbase-nextjs-template/pocketbase-nextjs-template ./
 
 EXPOSE 8090
 
