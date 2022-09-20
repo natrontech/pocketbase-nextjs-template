@@ -1,7 +1,9 @@
 Dockerfile
 .dockerignore
 node_modules
+vendor
 npm-debug.log
 README.md
 .next
 .git
+.env.local

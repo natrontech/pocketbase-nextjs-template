@@ -1,7 +1,9 @@
 import React from "react";
 import { useUserContext } from "../contexts/userContext";
 import { classNames } from "../lib/design";
+import Footer from "./Footer";
 import Loading from "./Loading";
+import Navigation from "./Navigation";
 
 export default function Layout(props: any) {
 
@@ -11,12 +13,9 @@ export default function Layout(props: any) {
         <div className="h-screen scrollbar-hide">
             {
                 user && !loading ? (
-                    <div>
-                        Navbar
-                    </div>
+                    <Navigation />
                 ) : null
             }
-
 
             <main className={classNames(
                 user && !loading ? "pt-20" : "pt-0",
@@ -25,11 +24,10 @@ export default function Layout(props: any) {
             )}>
                 {React.cloneElement(props.children)}
             </main>
+
             {
                 user && !loading ? (
-                    <div>
-                        Footer
-                    </div>
+                    <Footer />
                 ) : null
             }
 

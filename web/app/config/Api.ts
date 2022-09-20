@@ -4,12 +4,10 @@ import getConfig from 'next/config';
 
 const { publicRuntimeConfig: config } = getConfig();
 
-let version = 'v1';
-
 let urls = {
-    test: 'http://localhost:8090/api/' + version, // test on kubernetes kind cluster locally
-    development: 'http://localhost:8090/api/' + version, // local development
-    production: config.ENV_API_URI + version, // production
+    test: 'http://localhost:8090/api/', // test on kubernetes kind cluster locally
+    development: 'http://localhost:8090/api/', // local development
+    production: config.ENV_API_URL, // production
 }
 
 let Api = Axios.create({

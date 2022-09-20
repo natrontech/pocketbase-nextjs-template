@@ -18,6 +18,12 @@ RUN yarn install --frozen-lockfile
 # Rebuild the source code only when needed
 FROM node:alpine AS build-frontend
 
+ARG ENV_API_URL
+
+ENV ENV_API_URL=$ENV_API_URL
+
+RUN echo "ENV_API_URL=$ENV_API_URL" >> .env.production
+
 WORKDIR /app
 COPY ./web/app .
 COPY --from=deps /app/node_modules ./node_modules

@@ -4,7 +4,7 @@ module.exports = {
   trailingSlash: true,
   reactStrictMode: true,
   publicRuntimeConfig: {
-    ENV_API_URI: process.env.ENV_API_URI,
+    ENV_API_URL: process.env.ENV_API_URL,
   },
   images: {
     // loader: "custom",

@@ -67,6 +67,11 @@ You can find the source code on [Github](https://github.com/natrongmbh/pocketbas
 The frontend is written in Next.js and the backend in GoLang.
 License: GPL 3
 
+### Frontend
+
+The frontend is written in TypeScript and uses Next.js.  
+It uses [Tailwind CSS](https://tailwindcss.com/) for styling with [Flowbite React](https://flowbite-react.com) as a design system.  
+
 <h2></h2>
 <p>&nbsp;</p>
 
