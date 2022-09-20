@@ -1,11 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
 
 module.exports = {
   trailingSlash: true,
-  nextConfig,
+  reactStrictMode: true,
   publicRuntimeConfig: {
     ENV_API_URI: process.env.ENV_API_URI,
   },
@@ -19,6 +16,7 @@ module.exports = {
     //   exportFolderPath: "out",
     //   quality: 75,
     // },
+    unoptimized: true,
   },
   env: {
     storePicturesInWEBP: true,

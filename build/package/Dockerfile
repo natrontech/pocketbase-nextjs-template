@@ -26,12 +26,16 @@ RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 # Production build
 FROM alpine:latest
 
+WORKDIR /app
+
 RUN addgroup -g 1001 -S fourless
 RUN adduser -S fourless -u 1001
 
 RUN apk --no-cache add ca-certificates
-WORKDIR /app/
+
 COPY --from=build-frontend --chown=fourless:fourless /app/out ./public
-COPY --from=build-backend --chown=fourless:fourless /go/src/github.com/natrongmbh/fourless/cmd/fourless ./
-EXPOSE 8000
-CMD ["./fourless"]
+COPY --from=build-backend --chown=fourless:fourless /go/src/github.com/natrongmbh/fourless ./
+
+EXPOSE 8090
+
+CMD ["./fourless", "serve", "--http=0.0.0.0:8090"]

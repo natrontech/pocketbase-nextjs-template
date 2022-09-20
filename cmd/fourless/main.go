@@ -7,7 +7,9 @@ import (
 )
 
 func main() {
-	app := pocketbase.New()
+	app := pocketbase.NewWithConfig(pocketbase.Config{
+		DefaultDataDir: "/data",
+	})
 
 	if err := app.Start(); err != nil {
 		log.Fatal(err)

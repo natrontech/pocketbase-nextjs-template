@@ -6,7 +6,8 @@
     "dev": "react-env -- next",
     "build": "next build && next export",
     "start": "react-env -- next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "image": "next-image-export-optimizer"
   },
   "dependencies": {
     "@beam-australia/react-env": "^3.1.1",
