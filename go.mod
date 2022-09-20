@@ -1,8 +1,8 @@
-module github.com/natrongmbh/fourless
+module github.com/natrongmbh/pocketbase-nextjs-template
 
 go 1.18
 
-require github.com/pocketbase/pocketbase v0.7.4
+require github.com/pocketbase/pocketbase v0.7.5
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.5 // indirect

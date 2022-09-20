@@ -1,9 +1,9 @@
 # Backend build
 FROM golang:1.18 as build-backend
-WORKDIR /go/src/github.com/natrongmbh/fourless
+WORKDIR /go/src/github.com/natrongmbh/pocketbase-nextjs-template
 # RUN go get -d -v golang.org/x/net/html
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o fourless ./cmd/fourless
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o pocketbase-nextjs-template ./cmd/pocketbase-nextjs-template
 
 # Frontend build
 # Install dependencies only when needed
@@ -28,14 +28,14 @@ FROM alpine:latest
 
 WORKDIR /app
 
-RUN addgroup -g 1001 -S fourless
-RUN adduser -S fourless -u 1001
+RUN addgroup -g 1001 -S pocketbase-nextjs-template
+RUN adduser -S pocketbase-nextjs-template -u 1001
 
 RUN apk --no-cache add ca-certificates
 
-COPY --from=build-frontend --chown=fourless:fourless /app/out ./public
-COPY --from=build-backend --chown=fourless:fourless /go/src/github.com/natrongmbh/fourless ./
+COPY --from=build-frontend --chown=pocketbase-nextjs-template:pocketbase-nextjs-template /app/out ./public
+COPY --from=build-backend --chown=pocketbase-nextjs-template:pocketbase-nextjs-template /go/src/github.com/natrongmbh/pocketbase-nextjs-template ./
 
 EXPOSE 8090
 
-CMD ["./fourless", "serve", "--http=0.0.0.0:8090"]
+CMD ["./pocketbase-nextjs-template", "serve", "--http=0.0.0.0:8090"]
