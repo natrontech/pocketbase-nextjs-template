@@ -25,16 +25,16 @@
     alt="Build"
   /></a>
   <a href="https://github.com/sponsors/janlauber"><img
-    src="https://img.shields.io/github/sponsors/janlauber" 
+    src="https://img.shields.io/github/sponsors/janlauber"
     alt="Sponsors"
   /></a>
-  <a href="https://github.com/natrongmbh/pocketbase-nextjs-template"><img 
-    src="https://img.shields.io/github/license/natrongmbh/pocketbase-nextjs-template" 
+  <a href="https://github.com/natrongmbh/pocketbase-nextjs-template"><img
+    src="https://img.shields.io/github/license/natrongmbh/pocketbase-nextjs-template"
     alt="License"
   /></a>
-  <a href="https://www.codefactor.io/repository/github/natrongmbh/pocketbase-nextjs-template"><img 
-    src="https://www.codefactor.io/repository/github/natrongmbh/pocketbase-nextjs-template/badge" 
-    alt="CodeFactor" 
+  <a href="https://www.codefactor.io/repository/github/natrongmbh/pocketbase-nextjs-template"><img
+    src="https://www.codefactor.io/repository/github/natrongmbh/pocketbase-nextjs-template/badge"
+    alt="CodeFactor"
   /></a>
 </p>
 
@@ -44,7 +44,7 @@
 
 <p align="center">
   <em>
-    Check out the company behind pocketbase-nextjs-template – 
+    Check out the company behind pocketbase-nextjs-template –
     <a
       href="https://natron.io/"
     >https://natron.io</a>
@@ -62,9 +62,9 @@ Search through all files/folders and replace all instances of `pocketbase-nextjs
 
 ### Open Source
 
-Trust me, I'm open source.  
-You can find the source code on [Github](https://github.com/natrongmbh/pocketbase-nextjs-template).  
-The frontend is written in Next.js and the backend in GoLang.  
+Trust me, I'm open source.
+You can find the source code on [Github](https://github.com/natrongmbh/pocketbase-nextjs-template).
+The frontend is written in Next.js and the backend in GoLang.
 License: GPL 3
 
 <h2></h2>
@@ -75,3 +75,23 @@ License: GPL 3
 You can deploy pocketbase-nextjs-template in your Kubernetes cluster, but you have to set all the env variables.
 
 - [kubernetes-example](/deployments/kubernetes)
+
+### Docker
+
+You can also build and run pocketbase-nextjs-template with Docker.
+
+```yaml
+version: "3.9"
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./build/package/Dockerfile
+    ports:
+      - "8090:8090"
+    volumes:
+      - data:/data
+
+volumes:
+  data: {}
+```

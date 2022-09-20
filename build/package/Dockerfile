@@ -1,5 +1,5 @@
 # Backend build
-FROM golang:1.18 as build-backend
+FROM golang:1.19 as build-backend
 WORKDIR /go/src/github.com/natrongmbh/pocketbase-nextjs-template
 # RUN go get -d -v golang.org/x/net/html
 COPY . .
