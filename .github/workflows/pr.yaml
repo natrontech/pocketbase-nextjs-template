@@ -33,22 +33,22 @@ jobs:
       run: |
         go build -v ./cmd/pocketbase-nextjs-template
 
-  # web-build:
-  #   name: Frontend Build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 16
-  #     - name: install yarn
-  #       run: |
-  #         npm install -g yarn
-  #     - uses: actions/checkout@v1
-  #     - name: yarn install
-  #       run: |
-  #         cd ./src/frontend
-  #         yarn install
-  #     - name: build
-  #       run: |
-  #         cd ./src/frontend
-  #         yarn build
+  web-build:
+    name: Frontend Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: install yarn
+        run: |
+          npm install -g yarn
+      - uses: actions/checkout@v1
+      - name: yarn install
+        run: |
+          cd ./web/app
+          yarn install
+      - name: build
+        run: |
+          cd ./web/app
+          yarn build
