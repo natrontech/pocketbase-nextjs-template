@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   app:
-    build: 
+    build:
       context: ./
       dockerfile: ./build/package/Dockerfile
       args:

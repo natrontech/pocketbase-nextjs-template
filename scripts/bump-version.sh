@@ -53,7 +53,7 @@ if [ "$accept" == "y" ]; then
 
     # replace in go.mod
     sed -i '' "s/version $old_version/version $version/g" ../go.mod
-    
+
 else
     echo "Aborted"
     exit 1

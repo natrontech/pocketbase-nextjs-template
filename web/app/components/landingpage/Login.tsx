@@ -9,6 +9,7 @@ const Login = () => {
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-4">
                 <div>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="./images/logo/pocketbase-nextjs-template-logo.png" alt="Template Logo" className="mx-auto h-32 w-auto" />
                 </div>
                 <SubHeading>
