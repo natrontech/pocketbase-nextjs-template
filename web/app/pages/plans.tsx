@@ -1,9 +1,10 @@
 import { NextPage } from "next";
+import Heading from "../components/general/typo/Heading";
 
 const Plans: NextPage = () => {
     return (
         <div>
-            <h1>Plans</h1>
+            <Heading>Plans</Heading>
         </div>
     )
 }

@@ -8,11 +8,14 @@ import InputField from "../general/forms/InputField";
 import Heading from "../general/typo/Heading";
 import SubHeading from "../general/typo/SubHeading";
 import ExportedImage from "next-image-export-optimizer";
+import { classNames } from "../../lib/design";
+import { EnvelopeOpenIcon } from "@heroicons/react/24/outline";
 
 const Login = () => {
     const [provider, setProvider] = useState<any>();
 
     const { signInWithEmail, client }: any = useUserContext()
+    const [showForgotPassword, setShowForgotPassword] = useState(false);
 
     const handleLogin = () => {
         // get values from input fields
@@ -61,8 +64,8 @@ const Login = () => {
     const providerNames = provider?.authProviders?.map((provider: any) => provider.name);
 
     return (
-        <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full space-y-4">
+        <div className="flex flex-col min-h-screen justify-center items-center">
+            <div className="max-w-md w-full space-y-4 px-4 sm:px-0 overflow-hidden">
                 <div
                     className="w-46 h-46 mx-auto items-center flex justify-center"
                 >
@@ -79,52 +82,107 @@ const Login = () => {
                 <Heading>
                     Pocketbase Next.js Template
                 </Heading>
-                <SubHeading>
-                    App Sign In
-                </SubHeading>
-                <InputField
-                    name="email"
-                    label="Email"
-                    placeholder="Email"
-                    icon={EnvelopeIcon}
-                    required={true}
-                    type="email"
-                />
-                <InputField
-                    name="password"
-                    label="Password"
-                    placeholder="Password"
-                    icon={KeyIcon}
-                    required={true}
-                    type="password"
-                />
-                <StyledButton
-                    name="Login"
-                    type={StyledButtonType.Primary}
-                    icon={ArrowRightIcon}
-                    iconAnimation={true}
-                    onClick={handleLogin}
-                />
-                {
-                    providerNames?.includes("google") &&
-                    <StyledButton
-                        name="Login with Google"
-                        type={StyledButtonType.Secondary}
-                        icon={GoogleIcon}
-                        iconAnimation={false}
-                        onClick={() => signInWithEmail()}
-                    />
-                }
-                {
-                    providerNames?.includes("github") &&
-                    <StyledButton
-                        name="Login with Github"
-                        type={StyledButtonType.Secondary}
-                        icon={GithubIcon}
-                        iconAnimation={false}
-                        onClick={() => signInWithEmail()}
-                    />
-                }
+                <div
+                    className="relative"
+                >
+                    <div
+                        className={classNames(
+                            showForgotPassword ? 'opacity-0 translate-y-3 -z-10 h-0' : 'opacity-100 translate-y-0',
+                            "flex flex-col space-y-4 items-center transition-all duration-150 ease-in-out w-full delay-75"
+                        )}
+                    >
+                        <SubHeading>
+                            App Sign In
+                        </SubHeading>
+                        <InputField
+                            name="email"
+                            label="Email"
+                            placeholder="Email"
+                            icon={EnvelopeIcon}
+                            required={true}
+                            type="email"
+                        />
+                        <InputField
+                            name="password"
+                            label="Password"
+                            placeholder="Password"
+                            icon={KeyIcon}
+                            required={true}
+                            type="password"
+                        />
+
+                        <span
+                            className="text-sm text-gray-600 text-center cursor-pointer"
+                            onClick={() => {
+                                setShowForgotPassword(!showForgotPassword);
+                            }}
+                        >
+                            Forgotten Password?
+                        </span>
+
+                        <StyledButton
+                            name="Login"
+                            type={StyledButtonType.Primary}
+                            icon={ArrowRightIcon}
+                            iconAnimation={true}
+                            onClick={handleLogin}
+                        />
+                        {
+                            providerNames?.includes("google") &&
+                            <StyledButton
+                                name="Login with Google"
+                                type={StyledButtonType.Secondary}
+                                icon={GoogleIcon}
+                                iconAnimation={false}
+                                onClick={() => signInWithEmail()}
+                            />
+                        }
+                        {
+                            providerNames?.includes("github") &&
+                            <StyledButton
+                                name="Login with Github"
+                                type={StyledButtonType.Secondary}
+                                icon={GithubIcon}
+                                iconAnimation={false}
+                                onClick={() => signInWithEmail()}
+                            />
+                        }
+                    </div>
+                    <div
+                        className={classNames(
+                            !showForgotPassword ? 'opacity-0 translate-y-3 -z-10 h-0' : 'opacity-100 translate-y-0',
+                            "flex flex-col space-y-4 items-center transition-all w-full delay-75"
+                        )}
+                    >
+                        <SubHeading>
+                            Recover you Password
+                        </SubHeading>
+                        <InputField
+                            name="email"
+                            label="Email"
+                            placeholder="Email"
+                            icon={EnvelopeIcon}
+                            required={true}
+                            type="email"
+                        />
+
+                        <StyledButton
+                            name="Send Recovery Link"
+                            type={StyledButtonType.Primary}
+                            icon={EnvelopeOpenIcon}
+                            iconAnimation={false}
+                            onClick={handleLogin}
+                        />
+
+                        <StyledButton
+                            name="Back to Login"
+                            type={StyledButtonType.Secondary}
+                            onClick={() => {
+                                setShowForgotPassword(!showForgotPassword);
+                            }}
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     )
