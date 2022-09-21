@@ -53,11 +53,3 @@ jobs:
           cd ./web/app
           echo "ENV_API_URL=${{ secrets.ENV_API_URL }}" >> .env.production
           yarn build
-
-  eslint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: stefanoeb/eslint-action@1.0.2
-        with:
-          files: 'web/app/**/*.{js,jsx,ts,tsx}'
