@@ -100,9 +100,11 @@ You can also build and run pocketbase-nextjs-template with Docker.
 version: "3.9"
 services:
   app:
-    build:
+    build: 
       context: ./
       dockerfile: ./build/package/Dockerfile
+      args:
+        - ENV_API_URL=http://template.natron.io/api
     ports:
       - "8090:8090"
     volumes:

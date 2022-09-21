@@ -51,5 +51,5 @@ jobs:
       - name: build
         run: |
           cd ./web/app
-          echo ${{ secrets.ENV_API_URL }} > .env.production
+          echo "ENV_API_URL=${{ secrets.ENV_API_URL }}" >> .env.production
           yarn build

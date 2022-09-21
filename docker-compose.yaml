@@ -4,6 +4,8 @@ services:
     build: 
       context: ./
       dockerfile: ./build/package/Dockerfile
+      args:
+        - ENV_API_URL=http://template.natron.io/api
     ports:
       - "8090:8090"
     volumes:
