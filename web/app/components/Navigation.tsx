@@ -27,6 +27,8 @@ const Navigation = () => {
             rounded={true}
         >
             <Navbar.Brand href="https://flowbite.com/">
+
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="https://flowbite.com/docs/images/logo.svg"
                     className="mr-3 h-6 sm:h-9"

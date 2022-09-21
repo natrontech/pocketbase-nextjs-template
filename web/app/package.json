@@ -6,8 +6,18 @@
     "dev": "react-env -- next",
     "build": "next build && next export",
     "start": "react-env -- next start",
-    "lint": "next lint",
+    "lint": "eslint './**/*.{ts,tsx}' --max-warnings 0",
     "image": "next-image-export-optimizer"
+  },
+  "husky": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "./**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "yarn lint",
+      "git add"
+    ]
   },
   "dependencies": {
     "@beam-australia/react-env": "^3.1.1",

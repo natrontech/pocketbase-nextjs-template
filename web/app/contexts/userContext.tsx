@@ -51,7 +51,7 @@ export const UserContextProvider = ({ children }: Props) => {
             setLoading(false);
         }
         loadUserFromCookie();
-    }, []);
+    });
 
     const loginUser = async (username: string, password: string, remember: boolean) => {
         const { data: data } = await Api.post('/auth', {
