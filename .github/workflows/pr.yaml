@@ -53,3 +53,19 @@ jobs:
           cd ./web/app
           echo "ENV_API_URL=${{ secrets.ENV_API_URL }}" >> .env.production
           yarn build
+
+  web-lint:
+    name: Frontend Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: install yarn
+        run: |
+          npm install -g yarn
+      - uses: actions/checkout@v1
+      - name: yarn install
+        run: |
+          cd ./web/app
+          yarn lint
