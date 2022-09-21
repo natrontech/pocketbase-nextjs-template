@@ -54,21 +54,10 @@ jobs:
           echo "ENV_API_URL=${{ secrets.ENV_API_URL }}" >> .env.production
           yarn build
 
-  web-lint:
-    name: Frontend Lint
+  eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - name: install yarn
-        run: |
-          npm install -g yarn
-      - name: install eslint
-        run: |
-          npm init -g @eslint/config
       - uses: actions/checkout@v1
-      - name: yarn install
-        run: |
-          cd ./web/app
-          yarn lint
+      - uses: stefanoeb/eslint-action@1.0.2
+        with:
+          files: 'web/app/**/*.{js,jsx,ts,tsx}'
