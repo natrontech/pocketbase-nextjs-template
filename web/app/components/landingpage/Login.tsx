@@ -7,7 +7,6 @@ import StyledButton, { StyledButtonType } from "../general/buttons/StyledButton"
 import InputField from "../general/forms/InputField";
 import Heading from "../general/typo/Heading";
 import SubHeading from "../general/typo/SubHeading";
-import ExportedImage from "next-image-export-optimizer";
 import { classNames } from "../../lib/design";
 import { EnvelopeOpenIcon } from "@heroicons/react/24/outline";
 
@@ -70,7 +69,7 @@ const Login = () => {
                     className="w-46 h-46 mx-auto items-center flex justify-center"
                 >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <ExportedImage
+                    <img
                         className="rounded-full"
                         src="/images/logo/pocketbase-nextjs-template-logo.png"
                         alt="User"

@@ -3,7 +3,6 @@ import { BuildingStorefrontIcon, CalendarDaysIcon, ChartPieIcon, TableCellsIcon,
 import { useRouter } from "next/router";
 import { useUserContext } from "../contexts/userContext";
 import { User } from 'pocketbase';
-import ExportedImage from "next-image-export-optimizer";
 import Api from "../config/Api";
 import { parseUserAvatarUrl } from "../lib/parser";
 import { classNames } from "../lib/design";
@@ -45,7 +44,8 @@ const Navigation = () => {
                 className="w-46 h-46 mx-auto items-center flex justify-center mt-4 mb-4 cursor-pointer"
                 onClick={() => router.push('/dashboard')}
             >
-                <ExportedImage
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                     className="rounded-full"
                     src="/images/logo/pocketbase-nextjs-template-logo.png"
                     alt="User"

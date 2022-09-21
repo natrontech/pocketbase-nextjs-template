@@ -5,6 +5,9 @@ import PocketBase, { User } from 'pocketbase';
 import Cookies from 'js-cookie';
 import Api from "../config/Api";
 import { Toast, ToastType } from "../components/alerts/Toast";
+import getConfig from "next/config";
+
+const { publicRuntimeConfig: config } = getConfig();
 
 export const UserContext = createContext({});
 
@@ -23,7 +26,7 @@ export const UserContextProvider = ({ children }: Props) => {
     const [error, setError] = useState(null);
     const [reload, setReload] = useState(false);
     const router = useRouter();
-    const client = new PocketBase('http://127.0.0.1:8090');
+    const client = new PocketBase(config.ENV_API_URL || "http://127.0.0.1:8090");
 
     useEffect(() => {
         async function checkAuth() {
