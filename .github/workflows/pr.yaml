@@ -48,8 +48,8 @@ jobs:
         run: |
           cd ./web/app
           yarn install
-          echo ${{ secrets.ENV_API_URL }} > .env.production
       - name: build
         run: |
           cd ./web/app
+          echo ${{ secrets.ENV_API_URL }} > .env.production
           yarn build
