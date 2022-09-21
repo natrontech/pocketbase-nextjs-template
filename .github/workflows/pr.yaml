@@ -55,7 +55,7 @@ jobs:
           yarn build
 
   web-lint:
-    name: Frontend Build
+    name: Frontend Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v1
