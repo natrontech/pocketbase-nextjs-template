@@ -1,8 +1,7 @@
-import { ArrowRightIcon, EnvelopeIcon, KeyIcon } from "@heroicons/react/24/solid";
+import { ArrowRightIcon, CodeBracketIcon, EnvelopeIcon, KeyIcon } from "@heroicons/react/24/solid";
 import { GithubIcon, GoogleIcon } from "../../lib/Icons";
 import StyledButton, { StyledButtonType } from "../general/buttons/StyledButton";
 import InputField from "../general/forms/InputField";
-import Heading from "../general/typo/Heading";
 import SubHeading from "../general/typo/SubHeading";
 
 const Login = () => {
