@@ -63,19 +63,25 @@
 
 ### Getting started
 
-Search through all files/folders and replace all instances of `pocketbase-nextjs-template` with your project name.
+Search through all files/folders and replace all instances of `pocketbase-nextjs-template` with your project name.  
+There is a bash script that does this for you:  
+- [./scripts/getting-started.sh](./scripts/getting-started.sh)
+
+Just run it and follow the instructions.
 
 ### Open Source
 
-Trust me, I'm open source.
-You can find the source code on [Github](https://github.com/natrongmbh/pocketbase-nextjs-template).
-The frontend is written in Next.js and the backend in GoLang.
+Trust me, I'm open source.  
+You can find the source code on [Github](https://github.com/natrongmbh/pocketbase-nextjs-template).  
+The frontend is written in Next.js and the backend in GoLang (Pocketbase).  
 License: GPL 3
 
 ### Frontend
 
 The frontend is written in TypeScript and uses Next.js.  
 It uses [Tailwind CSS](https://tailwindcss.com/) for styling with [Flowbite React](https://flowbite-react.com) as a design system.  
+There are also some self-written components in the `components` folder.  
+Just use them as you like. They are similar to the Pocketbase UI Components.
 
 <h2></h2>
 <p>&nbsp;</p>
