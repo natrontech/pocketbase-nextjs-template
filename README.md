@@ -44,7 +44,7 @@
 </p>
 
 <p align="center">
-  pocketbase-nextjs-template allowes you to create and manage trial deployments of your application.
+  pocketbase-nextjs-template allowes you to create a Next.js app monolith with a PocketBase backend in seconds. :rocket:
 </p>
 
 <p align="center">
