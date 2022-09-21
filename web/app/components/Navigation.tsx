@@ -1,10 +1,12 @@
-import { Navbar, Dropdown, Avatar } from "flowbite-react";
-import { CalendarDaysIcon, ChartPieIcon } from '@heroicons/react/24/solid';
+import { Navbar, Dropdown, Avatar, Tooltip } from "flowbite-react";
+import { BuildingStorefrontIcon, CalendarDaysIcon, ChartPieIcon, TableCellsIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline';
 import { useRouter } from "next/router";
 import { useUserContext } from "../contexts/userContext";
 import { User } from 'pocketbase';
+import ExportedImage from "next-image-export-optimizer";
 import Api from "../config/Api";
 import { parseUserAvatarUrl } from "../lib/parser";
+import { classNames } from "../lib/design";
 
 const Navigation = () => {
 
@@ -18,79 +20,98 @@ const Navigation = () => {
 
     const navigation = [
         {
-            name: 'navpoint1',
-            href: '#',
-            current: router.pathname === '/',
+            name: 'dashboard',
+            href: '/dashboard',
+            current: router.pathname === '/dashboard',
             icon: ChartPieIcon,
         },
         {
-            name: 'navpoint2',
-            href: '#',
-            current: router.pathname === '/navpoint2',
-            icon: CalendarDaysIcon,
+            name: 'plans',
+            href: '/plans',
+            current: router.pathname === '/plans',
+            icon: TableCellsIcon,
+        },
+        {
+            name: 'settings',
+            href: '/settings',
+            current: router.pathname === '/settings',
+            icon: WrenchScrewdriverIcon,
         },
     ]
 
     return (
-        <Navbar
-            fluid={true}
-            rounded={true}
-        >
-            <Navbar.Brand href="https://flowbite.com/">
-
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="https://flowbite.com/docs/images/logo.svg"
-                    className="mr-3 h-6 sm:h-9"
-                    alt="Flowbite Logo"
+        <nav className="h-full space-y-8 bg-white shadow-xl w-20 fixed z-20 top-0 left-0 overflow transition-all duration-150 ease-in-out">
+            <div
+                className="w-46 h-46 mx-auto items-center flex justify-center mt-4 mb-4 cursor-pointer"
+                onClick={() => router.push('/dashboard')}
+            >
+                <ExportedImage
+                    className="rounded-full"
+                    src="/images/logo/pocketbase-nextjs-template-logo.png"
+                    alt="User"
+                    width={46}
+                    height={46}
+                // unoptimized={true}
                 />
-                <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                    Flowbite
-                </span>
-            </Navbar.Brand>
-            <div className="flex md:order-2">
-                <Dropdown
-                    arrowIcon={false}
-                    inline={true}
-                    label={<Avatar alt="User settings" img={parseUserAvatarUrl(userObj)} rounded={true} />}
-                >
-                    <Dropdown.Header>
-                        <span className="block text-sm">
-                            {
-                                userObj?.profile?.name
-                            }
-                        </span>
-                        <span className="block truncate text-sm font-medium">
-                            {
-                                userObj?.email
-                            }
-                        </span>
-                    </Dropdown.Header>
-                    <Dropdown.Item>
-                        Settings
-                    </Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item
-                        onClick={() => logout(false)}
-                    >
-                        Sign out
-                    </Dropdown.Item>
-                </Dropdown>
-                <Navbar.Toggle />
             </div>
-            <Navbar.Collapse>
+            <div className="flex flex-col space-y-8 items-center">
                 {navigation.map((item) => (
-                    <Navbar.Link
-                        href={item.href}
+                    <div
                         key={item.name}
-                        active={item.current}
+                        onClick={() => router.push(item.href)}
                     >
-                        <item.icon className="w-5 h-5 mr-2 inline" />
-                        {item.name}
-                    </Navbar.Link>
+                        <Tooltip
+                            content={item.name}
+                            placement="right"
+                            arrow={false}
+                        >
+                            <div
+                                className={classNames(
+                                    item.current ? 'border-2 border-black' : '',
+                                    "hover:bg-gray-200 group rounded-lg h-12 w-12 flex items-center justify-center cursor-pointer transition-all duration-150 ease-in-out"
+                                )}
+                            >
+                                <item.icon className="w-8 h-8 text-black" />
+                            </div>
+                        </Tooltip>
+                    </div>
                 ))}
-            </Navbar.Collapse>
-        </Navbar>
+
+                <div className="bottom-4 absolute">
+                    <Dropdown
+                        arrowIcon={false}
+                        inline={true}
+                        label={<Avatar alt="User settings" img={parseUserAvatarUrl(userObj)} rounded={false} />}
+                    >
+                        <Dropdown.Header>
+                            <span className="block text-sm">
+                                {
+                                    userObj?.profile?.name
+                                }
+                            </span>
+                            <span className="block truncate text-sm font-medium">
+                                {
+                                    userObj?.email
+                                }
+                            </span>
+                        </Dropdown.Header>
+                        <Dropdown.Item
+                            onClick={() => {
+                                router.push('/profile')
+                            }}
+                        >
+                            Settings
+                        </Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item
+                            onClick={() => logout(false)}
+                        >
+                            Sign out
+                        </Dropdown.Item>
+                    </Dropdown>
+                </div>
+            </div>
+        </nav>
     )
 }
 

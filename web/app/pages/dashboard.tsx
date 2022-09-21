@@ -1,14 +1,17 @@
 import { NextPage } from "next";
 import Link from "next/link";
 import getConfig from 'next/config';
+import Heading from "../components/general/typo/Heading";
 
 const { publicRuntimeConfig: config } = getConfig();
 
-const Info: NextPage = () => {
+const Dashboard: NextPage = () => {
     const pb_admin_url = config.ENV_API_URL + '/_/';
     return (
         <div>
-            <h1>Info</h1>
+            <Heading>
+                Dashboard
+            </Heading>
             <ul className="list-disc">
                 <li
                     className="text-primary hover:text-primary-dark cursor-pointer"
@@ -25,4 +28,4 @@ const Info: NextPage = () => {
     )
 }
 
-export default Info;
+export default Dashboard;

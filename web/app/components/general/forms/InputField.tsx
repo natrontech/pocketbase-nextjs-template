@@ -5,7 +5,7 @@ interface InputFieldProps {
     name: string;
     placeholder: string;
     icon?: (props: SVGProps<SVGSVGElement>) => JSX.Element;
-    onChange: any;
+    onChange?: any;
     required: boolean;
     type: string;
 }

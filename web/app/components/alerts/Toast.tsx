@@ -14,12 +14,12 @@ export const Toast = (message: string, type: ToastType) => {
       toast.success(message, {
         position: "top-right",
         autoClose: 2000,
-        hideProgressBar: true,
+        hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark"
+        theme: "colored"
       });
       break;
 
@@ -27,7 +27,7 @@ export const Toast = (message: string, type: ToastType) => {
       toast.error(message, {
         position: "top-right",
         autoClose: 2000,
-        hideProgressBar: true,
+        hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -40,7 +40,7 @@ export const Toast = (message: string, type: ToastType) => {
       toast.info(message, {
         position: "top-right",
         autoClose: 2000,
-        hideProgressBar: true,
+        hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -53,7 +53,7 @@ export const Toast = (message: string, type: ToastType) => {
       toast.warning(message, {
         position: "top-right",
         autoClose: 2000,
-        hideProgressBar: true,
+        hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -66,7 +66,7 @@ export const Toast = (message: string, type: ToastType) => {
       toast(message, {
         position: "top-right",
         autoClose: 2000,
-        hideProgressBar: true,
+        hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,

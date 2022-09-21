@@ -7,17 +7,26 @@ import StyledButton, { StyledButtonType } from "../general/buttons/StyledButton"
 import InputField from "../general/forms/InputField";
 import Heading from "../general/typo/Heading";
 import SubHeading from "../general/typo/SubHeading";
+import ExportedImage from "next-image-export-optimizer";
 
 const Login = () => {
-
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [provider, setProvider] = useState<any>();
 
     const { signInWithEmail, client }: any = useUserContext()
 
     const handleLogin = () => {
-        signInWithEmail(email, password, false)
+        // get values from input fields
+        const email = document.getElementById("email") as HTMLInputElement;
+        const password = document.getElementById("password") as HTMLInputElement;
+
+        // check if values are empty
+        if (email.value === "" || password.value === "") {
+            Toast("Please fill in all fields", ToastType.warning);
+            return;
+        }
+
+        // login
+        signInWithEmail(email.value, password.value, false);
     }
 
     useEffect(() => {
@@ -32,14 +41,40 @@ const Login = () => {
             })
     }, [client.users])
 
+    // if enter is pressed, login
+    const handleKeyDown = (event: any) => {
+        if (event.key === 'Enter') {
+            handleLogin();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown, false);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown, false);
+        };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const providerNames = provider?.authProviders?.map((provider: any) => provider.name);
 
     return (
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-4">
-                <div>
+                <div
+                    className="w-46 h-46 mx-auto items-center flex justify-center"
+                >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="./images/logo/pocketbase-nextjs-template-logo.png" alt="Template Logo" className="mx-auto h-32 w-auto" />
+                    <ExportedImage
+                        className="rounded-full"
+                        src="/images/logo/pocketbase-nextjs-template-logo.png"
+                        alt="User"
+                        width={80}
+                        height={80}
+                    // unoptimized={true}
+                    />
                 </div>
                 <Heading>
                     Pocketbase Next.js Template
@@ -52,7 +87,6 @@ const Login = () => {
                     label="Email"
                     placeholder="Email"
                     icon={EnvelopeIcon}
-                    onChange={(e: any) => setEmail(e.target.value)}
                     required={true}
                     type="email"
                 />
@@ -61,7 +95,6 @@ const Login = () => {
                     label="Password"
                     placeholder="Password"
                     icon={KeyIcon}
-                    onChange={(e: any) => setPassword(e.target.value)}
                     required={true}
                     type="password"
                 />
@@ -79,7 +112,7 @@ const Login = () => {
                         type={StyledButtonType.Secondary}
                         icon={GoogleIcon}
                         iconAnimation={false}
-                        onClick={() => signInWithEmail(email, password, true)}
+                        onClick={() => signInWithEmail()}
                     />
                 }
                 {
@@ -89,7 +122,7 @@ const Login = () => {
                         type={StyledButtonType.Secondary}
                         icon={GithubIcon}
                         iconAnimation={false}
-                        onClick={() => signInWithEmail(email, password, true)}
+                        onClick={() => signInWithEmail()}
                     />
                 }
             </div>

@@ -9,17 +9,11 @@ const Home: NextPage = () => {
   const {user, loading}: any = useUserContext();
   const router = useRouter();
 
-  if (user && !loading) {
-    router.push('/info');
+  if (user) {
+    router.push('/dashboard');
   }
 
-  return (
-    <div
-      className="h-screen"
-    >
-      <Login />
-    </div>
-  )
+  return <Login />
 }
 
 export default Home
