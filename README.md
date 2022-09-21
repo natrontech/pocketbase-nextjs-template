@@ -96,7 +96,7 @@ You can deploy pocketbase-nextjs-template in your Kubernetes cluster, but you ha
 
 You need to set the following Github Actions secrets:
 
-- `ENV_API_URL` - The URL of the API, e.g. `https://template.natron.io/api` (without trailing slash, but /api at the end, must be accessible from the webclient)
+- `ENV_API_URL` - The URL of the API, e.g. `https://template.natron.io` (without trailing slash, but /api at the end, must be accessible from the webclient)
 
 ### Docker
 
@@ -110,7 +110,7 @@ services:
       context: ./
       dockerfile: ./build/package/Dockerfile
       args:
-        - ENV_API_URL=http://template.natron.io/api
+        - ENV_API_URL=http://template.natron.io
     ports:
       - "8090:8090"
     volumes:

@@ -7,7 +7,7 @@ const { publicRuntimeConfig: config } = getConfig();
 let urls = {
     test: 'http://localhost:8090/api/', // test on kubernetes kind cluster locally
     development: 'http://localhost:8090/api/', // local development
-    production: config.ENV_API_URL, // production
+    production: config.ENV_API_URL + '/api', // production
 }
 
 let Api = Axios.create({

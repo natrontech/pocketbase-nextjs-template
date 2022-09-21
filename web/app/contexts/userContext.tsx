@@ -1,18 +1,12 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
+import PocketBase, { User } from 'pocketbase';
 import Cookies from 'js-cookie';
 import Api from "../config/Api";
-import { AlertType, DefaultAlert } from "../components/alerts/Alerts";
+import { Toast, ToastType } from "../components/alerts/Toast";
 
 export const UserContext = createContext({});
-
-export interface User {
-    ID: number;
-    Username: string;
-    Name: string;
-    Group: string;
-}
 
 export const useUserContext = () => {
     return useContext(UserContext);
@@ -29,60 +23,55 @@ export const UserContextProvider = ({ children }: Props) => {
     const [error, setError] = useState(null);
     const [reload, setReload] = useState(false);
     const router = useRouter();
+    const client = new PocketBase('http://127.0.0.1:8090');
 
     useEffect(() => {
-        async function loadUserFromCookie() {
-            const token = Cookies.get('token');
-            if (token) {
-                try {
-                    // @ts-ignore
-                    Api.defaults.headers.Authorization = 'Bearer ' + token;
-                    const { data: user } = await Api.get('/auth');
-                    if (user) {
-                        setUser(user);
-                    }
-                } catch (error) {
-                    logoutUser(true);
-                    console.log(error);
-                }
-            } else {
-                console.log("No token in cookie");
-            }
-            setLoading(false);
+        async function checkAuth() {
+            await client.users.refresh()
+                .then((newAuthData) => {
+                    setUser(newAuthData.user);
+                })
+                .catch((error) => {
+                    throw error;
+                })
         }
-        loadUserFromCookie();
-    });
+        checkAuth()
+            .catch((error) => {
+                logout(true)
+                console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
+                setReload(!reload);
+            })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    const loginUser = async (username: string, password: string, remember: boolean) => {
-        const { data: data } = await Api.post('/auth', {
-            username,
-            password,
-        });
-        if (data) {
-            // @ts-ignore
-            Api.defaults.headers.Authorization = 'Bearer ' + data["token"];
-            const { data: user} = await Api.get('/auth');
-            if (user) {
-                setUser(user);
-                console.log("Logged in as " + user.username);
-            }
-        }
-        Cookies.set('token', data["token"], { secure: true, expires: 1 });
-        if (remember) {
-            Cookies.set('username', username, { secure: true, expires: 31 });
-        }
-        DefaultAlert("Logged in", AlertType.Success);
+    const signInWithEmail = async (username: string, password: string, remember: boolean) => {
+        setLoading(true);
+
+        await client.users.authViaEmail(username, password)
+            .then((data) => {
+                if (data) {
+                    setUser(data.user);
+                    Toast("Logged In", ToastType.success);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                setError(error);
+                Toast("Login Failed", ToastType.error);
+            })
+            .finally(() => {
+                setLoading(false);
+            })
     }
 
-    const logoutUser = (noalert: boolean | null) => {
-        Cookies.remove('token');
+    const logout = (noalert: boolean | null) => {
+        client.authStore.clear();
         setUser(null);
-        // @ts-ignore
-        delete Api.defaults.headers.Authorization;
-        setUser(null);
-        setError(null);
-        if (!noalert) {
-            DefaultAlert("Logged out", AlertType.Success);
+        if (!noalert || noalert === null) {
+            Toast("Logged out", ToastType.success);
         }
         router.push("/");
     }
@@ -93,11 +82,12 @@ export const UserContextProvider = ({ children }: Props) => {
         componentLoading,
         error,
         reload,
+        client,
         setLoading,
         setComponentLoading,
         setReload,
-        loginUser,
-        logoutUser
+        signInWithEmail,
+        logout
     };
 
     return (

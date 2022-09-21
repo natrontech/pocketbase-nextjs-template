@@ -1,10 +1,20 @@
 import { Navbar, Dropdown, Avatar } from "flowbite-react";
 import { CalendarDaysIcon, ChartPieIcon } from '@heroicons/react/24/solid';
 import { useRouter } from "next/router";
+import { useUserContext } from "../contexts/userContext";
+import { User } from 'pocketbase';
+import Api from "../config/Api";
+import { parseUserAvatarUrl } from "../lib/parser";
 
 const Navigation = () => {
 
     const router = useRouter();
+
+    const { logout }: any = useUserContext()
+    const { user }: any = useUserContext()
+
+    // convert user to User type
+    const userObj: User = user;
 
     const navigation = [
         {
@@ -42,21 +52,27 @@ const Navigation = () => {
                 <Dropdown
                     arrowIcon={false}
                     inline={true}
-                    label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
+                    label={<Avatar alt="User settings" img={parseUserAvatarUrl(userObj)} rounded={true} />}
                 >
                     <Dropdown.Header>
                         <span className="block text-sm">
-                            Bonnie Green
+                            {
+                                userObj?.profile?.name
+                            }
                         </span>
                         <span className="block truncate text-sm font-medium">
-                            name@flowbite.com
+                            {
+                                userObj?.email
+                            }
                         </span>
                     </Dropdown.Header>
                     <Dropdown.Item>
                         Settings
                     </Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item>
+                    <Dropdown.Item
+                        onClick={() => logout(false)}
+                    >
                         Sign out
                     </Dropdown.Item>
                 </Dropdown>

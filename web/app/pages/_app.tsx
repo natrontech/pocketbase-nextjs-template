@@ -5,6 +5,8 @@ import Layout from '../components/Layout'
 import { UserContextProvider } from '../contexts/userContext'
 import Head from 'next/head'
 import { useEffect } from 'react'
+import { ToastContainer } from 'react-toastify';
+
 function MyApp({ Component, pageProps }: AppProps) {
 
   if (typeof window !== 'undefined') {
@@ -45,6 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Layout>
       </UserContextProvider>
+      <ToastContainer />
     </div>
   )
 }
