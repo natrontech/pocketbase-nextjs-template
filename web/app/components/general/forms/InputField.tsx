@@ -10,19 +10,20 @@ interface InputFieldProps {
     type: string;
 }
 
-const InputField = ({ label, name, icon, onChange, required, type }: InputFieldProps) => {
+const InputField = (props: InputFieldProps) => {
     return (
-        <div className="mb-2 block bg-gray-200 focus-within:bg-gray-300 w-full rounded-sm transition-all duration-150 ease-in-out">
-            <label className="block pt-2 pl-3 text-xs font-GilroyMedium text-gray-600 uppercase" htmlFor={name}>
+        <div className="mb-2 relative block bg-gray-200 focus-within:bg-gray-300 w-full group rounded-sm transition-all duration-150 ease-in-out">
+            <label className="block pt-2 pl-3 text-xs font-GilroyMedium text-gray-600 uppercase" htmlFor={props.name}>
                 {
-                    required ?
+                    props.required ?
                         <>
-                            {label} <span className="text-red-600">*</span>
+                            {props.label} <span className="text-red-600">*</span>
                         </> :
-                        label
+                        props.label
                 }
             </label>
-            <input autoComplete="off" className="w-full bg-transparent border-none focus:ring-0" id={name} name={name} type={type} onChange={onChange} required={required} />
+            {props.icon && <props.icon className="h-5 w-5 absolute top-1/2 transform group-focus-within:text-gray-600 transition-all duration-150 ease-in-out -translate-y-1/2 right-3" />}
+            <input autoComplete="off" className="w-full bg-transparent border-none focus:ring-0" id={props.name} name={props.name} type={props.type} onChange={props.onChange} required={props.required} />
         </div>
     )
 }

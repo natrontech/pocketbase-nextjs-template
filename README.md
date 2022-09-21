@@ -1,13 +1,18 @@
 <p align="center">
-    <a href="https://pocketbase.io/">
-        <img height="120px" src="https://pocketbase.io/images/logo.svg" />
-    </a>
-    <a href="https://nextjs.org/">
-        <img height="120px" src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png" />
+    <a href="https://github.com/natrongmbh/pocketbase-nextjs-template">
+        <img height="120px" src="./assets/pocketbase-nextjs-template-logo.png" />
     </a>
     <h1 align="center">
         PocketBase Next.js Template
     </h1>
+    <p align="center">
+    <a href="https://pocketbase.io/">
+        <img height="60px" src="https://pocketbase.io/images/logo.svg" />
+    </a>
+    <a href="https://nextjs.org/">
+        <img height="60px" src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png" />
+    </a>
+    </p>
 </p>
 
 <p align="center">

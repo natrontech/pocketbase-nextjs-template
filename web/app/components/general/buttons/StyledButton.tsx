@@ -21,7 +21,7 @@ const StyledButton = (props: StyledButtonProps) => {
         "transition-all duration-150 ease-in-out"
     )
     const defaultStyleClasses = classNames(
-        props.type === StyledButtonType.Primary ? "bg-black text-white" : "box-border border-2 border-black text-gray-700",
+        props.type === StyledButtonType.Primary ? "bg-black text-white" : "shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] text-gray-700",
         "rounded-sm px-11 py-4 w-full block overflow-hidden group  font-GilroyMedium text-sm my-2",
     )
 
