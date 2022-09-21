@@ -64,6 +64,7 @@ jobs:
       - name: install yarn
         run: |
           npm install -g yarn
+          npm install -g eslint
       - uses: actions/checkout@v1
       - name: yarn install
         run: |
