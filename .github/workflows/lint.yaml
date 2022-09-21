@@ -18,10 +18,9 @@ jobs:
           cd ./web/app
           yarn install
       - uses: sibiraj-s/action-eslint@v2
-        run: |
-          cd ./web/app
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }} # Optional
           eslint-args: '--ignore-path=.gitignore --quiet'
           extensions: 'js,jsx,ts,tsx'
           annotations: true
+          working-directory: ./web/app
