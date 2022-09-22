@@ -1,4 +1,4 @@
-import { ArrowLeftOnRectangleIcon, ArrowRightIcon, CodeBracketIcon, EnvelopeIcon, KeyIcon } from "@heroicons/react/24/solid";
+import { ArrowRightIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../contexts/userContext";
 import { GithubIcon, GoogleIcon } from "../../lib/Icons";
@@ -8,7 +8,7 @@ import InputField from "../general/forms/InputField";
 import Heading from "../general/typo/Heading";
 import SubHeading from "../general/typo/SubHeading";
 import { classNames } from "../../lib/design";
-import { EnvelopeOpenIcon } from "@heroicons/react/24/outline";
+import { EnvelopeOpenIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 
 const Login = () => {
     const [provider, setProvider] = useState<any>();
@@ -105,7 +105,7 @@ const Login = () => {
                             name="password"
                             label="Password"
                             placeholder="Password"
-                            icon={KeyIcon}
+                            icon={LockClosedIcon}
                             required={true}
                             type="password"
                         />

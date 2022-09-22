@@ -100,7 +100,7 @@ const Navigation = () => {
                                 router.push('/profile')
                             }}
                         >
-                            Settings
+                            Profile
                         </Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item

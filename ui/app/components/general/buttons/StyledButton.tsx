@@ -1,7 +1,7 @@
 import { SVGProps } from "react";
 import { classNames } from "../../../lib/design";
 
-interface StyledButtonProps {
+export interface StyledButtonProps {
     name: string;
     icon?: (props: SVGProps<SVGSVGElement>) => JSX.Element;
     iconAnimation?: boolean;
