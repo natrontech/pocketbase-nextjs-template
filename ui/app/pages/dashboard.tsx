@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import AreaChart from "../components/dashboard/AreaChart";
 import Heading from "../components/general/typo/Heading";
 import { faker } from '@faker-js/faker';
+import Stats from "../components/dashboard/Stats";
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
@@ -20,10 +21,13 @@ export const areaData = {
 
 const Dashboard: NextPage = () => {
     return (
-        <div>
+        <div
+            className=""
+        >
             <Heading>
                 Dashboard
             </Heading>
+            <Stats />
             <AreaChart data={areaData} />
         </div>
     )
