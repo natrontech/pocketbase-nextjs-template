@@ -80,9 +80,9 @@ License: GPL 3
 
 ### Frontend
 
-The frontend is written in TypeScript and uses Next.js.
-It uses [Tailwind CSS](https://tailwindcss.com/) for styling with [Flowbite React](https://flowbite-react.com) as a design system.
-There are also some self-written components in the `components` folder.
+The frontend is written in TypeScript and uses Next.js.  
+It uses [Tailwind CSS](https://tailwindcss.com/) for styling with [Flowbite React](https://flowbite-react.com) as a design system.  
+There are also some self-written components in the `components` folder.  
 Just use them as you like. They are similar to the Pocketbase UI Components.
 
 <h2></h2>
