@@ -63,13 +63,13 @@
 
 ### Getting started
 
-Search through all files/folders and replace all instances of `pocketbase-nextjs-template` with your project name.
+Search through all files/folders and replace all instances of `pocketbase-nextjs-template` with your project name.  
 There is a bash script that does this for you:
 - [./scripts/getting-started.sh](./scripts/getting-started.sh)
 
-Just run it and follow the instructions.
-To deploy your app, you can containerize it with the included Dockerfile(s) under [./build/package/pocketbase](./build/package/pocketbase) and [./ui/app](./ui/app/).
-Or simply execute the docker-compose file [docker-compose.yaml](docker-compose.yaml) to run the app locally.
+Just run it and follow the instructions.  
+To deploy your app, you can containerize it with the included Dockerfile(s) under [./build/package/pocketbase](./build/package/pocketbase) and [./ui/app](./ui/app/).  
+Or simply execute the docker-compose file [docker-compose.yaml](docker-compose.yaml) to run the app locally.  
 
 ### Open Source
 
@@ -129,7 +129,7 @@ volumes:
 
 ```
 
-### Deploy
+### Production
 
-You can deploy pocketbase-nextjs-template in your Kubernetes cluster, but you have to set all the env variables.
+You can deploy pocketbase-nextjs-template in your Kubernetes cluster, but you have to set all the env variables.  
 For backing up the database, you can consider using [Litestream](https://litestream.io).
