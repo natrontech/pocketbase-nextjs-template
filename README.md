@@ -73,9 +73,9 @@ Or simply execute the docker-compose file [docker-compose.yaml](docker-compose.y
 
 ### Open Source
 
-Trust me, I'm open source.
-You can find the source code on [Github](https://github.com/natrongmbh/pocketbase-nextjs-template).
-The frontend is written in Next.js and the backend in GoLang (Pocketbase).
+Trust me, I'm open source.  
+You can find the source code on [Github](https://github.com/natrongmbh/pocketbase-nextjs-template).  
+The frontend is written in Next.js and the backend in GoLang (Pocketbase).  
 License: GPL 3
 
 ### Frontend
