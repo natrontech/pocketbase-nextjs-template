@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 16
       - run: |
-          cd ./web/app
+          cd ./ui/app
           yarn install
       - uses: sibiraj-s/action-eslint@v2
         with:
