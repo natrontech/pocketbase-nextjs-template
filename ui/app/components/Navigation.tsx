@@ -48,7 +48,7 @@ const Navigation = () => {
                 <img
                     className="rounded-full"
                     src="/images/logo/pocketbase-nextjs-template-logo.png"
-                    alt="User"
+                    alt="Logo"
                     width={46}
                     height={46}
                 // unoptimized={true}
