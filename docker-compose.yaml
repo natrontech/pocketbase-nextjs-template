@@ -1,15 +1,21 @@
 version: "3.9"
 services:
-  app:
+  pocketbase:
     build:
       context: ./
-      dockerfile: ./build/package/Dockerfile
-      args:
-        - ENV_API_URL=http://template.natron.io
+      dockerfile: ./build/package/pocketbase/Dockerfile
     ports:
       - "8090:8090"
     volumes:
       - data:/data
+
+  ui:
+    build: ./ui/app/
+    ports:
+      - "3000:3000"
+    environment:
+      - ENV_API_URL=http://template.natron.io:8090
+
 
 volumes:
   data: {}

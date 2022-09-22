@@ -44,7 +44,7 @@
 </p>
 
 <p align="center">
-  pocketbase-nextjs-template allowes you to create a Next.js app monolith with a PocketBase backend in seconds. :rocket:
+  pocketbase-nextjs-template allowes you to create a Next.js app with a PocketBase backend in seconds. :rocket:
 </p>
 
 <p align="center">
@@ -68,6 +68,8 @@ There is a bash script that does this for you:
 - [./scripts/getting-started.sh](./scripts/getting-started.sh)
 
 Just run it and follow the instructions.
+To deploy your app, you can containerize it with the included Dockerfile(s) under [./build/package/pocketbase](./build/package/pocketbase) and [./ui/app](./ui/app/).
+Or simply execute the docker-compose file [docker-compose.yaml](docker-compose.yaml) to run the app locally.
 
 ### Open Source
 
@@ -119,3 +121,8 @@ services:
 volumes:
   data: {}
 ```
+
+### Deploy
+
+You can deploy pocketbase-nextjs-template in your Kubernetes cluster, but you have to set all the env variables.
+For backing up the database, you can consider using [Litestream](https://litestream.io).
