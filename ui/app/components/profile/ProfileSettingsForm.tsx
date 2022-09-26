@@ -77,8 +77,6 @@ const ProfileSettingsForm = () => {
                 Settings
             </SubHeading>
 
-
-
             <div
                 className="grid sm:grid-cols-2 gap-4 justify-center items-center"
             >
