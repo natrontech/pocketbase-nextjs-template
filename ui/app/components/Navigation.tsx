@@ -6,6 +6,10 @@ import { User } from 'pocketbase';
 import Api from "../config/Api";
 import { parseUserAvatarUrl } from "../lib/parser";
 import { classNames } from "../lib/design";
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Fragment } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 const Navigation = () => {
 
@@ -45,12 +49,13 @@ const Navigation = () => {
                 onClick={() => router.push('/dashboard')}
             >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                     className="rounded-full"
                     src="/images/logo/pocketbase-nextjs-template-logo.png"
                     alt="Logo"
                     width={46}
                     height={46}
+                    loader={({ src }) => src}
                 // unoptimized={true}
                 />
             </div>
@@ -77,39 +82,71 @@ const Navigation = () => {
                     </div>
                 ))}
 
-                <div className="bottom-4 absolute">
-                    <Dropdown
-                        arrowIcon={false}
-                        inline={true}
-                        label={<Avatar alt="User settings" img={parseUserAvatarUrl(userObj)} rounded={false} />}
+                <Menu as="div" className="bottom-4 absolute">
+                    <div>
+                        <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-none hover:active:scale-105 transition-all duration-150 ease-in-out">
+                            <span className="sr-only">Open user menu</span>
+                            <Image
+                                className="h-8 w-8 rounded-full"
+                                src={parseUserAvatarUrl(userObj)}
+                                alt=""
+                                width={32}
+                                height={32}
+                                loader={({ src }) => src}
+                            />
+                        </Menu.Button>
+                    </div>
+                    <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
                     >
-                        <Dropdown.Header>
-                            <span className="block text-sm">
-                                {
-                                    userObj?.profile?.name
-                                }
-                            </span>
-                            <span className="block truncate text-sm font-medium">
-                                {
-                                    userObj?.email
-                                }
-                            </span>
-                        </Dropdown.Header>
-                        <Dropdown.Item
-                            onClick={() => {
-                                router.push('/profile')
-                            }}
-                        >
-                            Profile
-                        </Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item
-                            onClick={() => logout(false)}
-                        >
-                            Sign out
-                        </Dropdown.Item>
-                    </Dropdown>
-                </div>
+                        <Menu.Items className="absolute bottom-0 z-50 mb-10 w-48 origin-bottom-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <div
+                                        className="px-4 py-2 text-sm border-b-2 shadow-sm"
+                                    >
+                                        <div className="">
+                                            {
+                                                userObj?.profile?.name
+                                            }
+                                        </div>
+                                        <div className="truncatefont-GilroyMedium">
+                                            {
+                                                userObj?.email
+                                            }
+                                        </div>
+                                    </div>
+                                )}
+                            </Menu.Item>
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <div
+                                        onClick={() => router.push('/profile')}
+                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 cursor-pointer')}
+                                    >
+                                        Your Profile
+                                    </div>
+                                )}
+                            </Menu.Item>
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <div
+                                        onClick={() => logout(false)}
+                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 cursor-pointer')}
+                                    >
+                                        Sign out
+                                    </div>
+                                )}
+                            </Menu.Item>
+                        </Menu.Items>
+                    </Transition>
+                </Menu>
             </div>
         </nav>
     )

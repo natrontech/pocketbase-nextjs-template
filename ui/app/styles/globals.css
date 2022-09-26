@@ -34,8 +34,6 @@ strong {
     font-family: Gilroy-Bold;
 }
 
-a {}
-
 input:checked~.dot {
     transform: translateX(100%);
 }
