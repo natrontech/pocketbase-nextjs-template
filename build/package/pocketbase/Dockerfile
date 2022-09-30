@@ -6,7 +6,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o pocketbase-nextjs-template ./cmd/pocketbase-nextjs-template
 
 # Production build
-FROM alpine:latest
+FROM alpine:3.16
 
 WORKDIR /app
 
