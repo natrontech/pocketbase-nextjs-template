@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # get arguments
 if [ $# -eq 0 ]; then
