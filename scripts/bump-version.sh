@@ -35,7 +35,6 @@ replace_version $1
 
 # color red
 RED='\033[0;31m'
-echo "\n"
 echo "${RED}Bumping version from $old_version to $version"
 WHITE='\033[0m'
 echo "${WHITE}"
