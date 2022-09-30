@@ -40,7 +40,7 @@ WHITE='\033[0m'
 echo "${WHITE}"
 echo "============================="
 echo "Accept the changes? (y/n)"
-read accept
+read -r answer
 
 if [ "$accept" == "y" ]; then
     # replace VERSION?=0.0.0 in ../Makefile
