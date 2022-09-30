@@ -3,16 +3,22 @@ package main
 import (
 	"log"
 
-	"github.com/pocketbase/pocketbase"
+	"github.com/natrongmbh/pocketbase-nextjs-template/pkg/env"
+	"github.com/natrongmbh/pocketbase-nextjs-template/pkg/server"
 )
 
-func main() {
-	app := pocketbase.NewWithConfig(pocketbase.Config{
-		DefaultDataDir: "/data",
-	})
+func init() {
+	err := env.Init()
+	if err != nil {
+		log.Fatal(err)
+	}
+}
 
-	// start the app
-	if err := app.Start(); err != nil {
+func main() {
+	server := server.Setup()
+
+	// start the pocketbase server
+	if err := server.Start(); err != nil {
 		log.Fatal(err)
 	}
 }

@@ -7,7 +7,7 @@ services:
     ports:
       - "8090:8090"
     volumes:
-      - data:/data
+      - pb_data:/pb_data
 
   ui:
     build: ./ui/app/
@@ -18,4 +18,4 @@ services:
 
 
 volumes:
-  data: {}
+  pb_data: {}
