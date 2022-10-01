@@ -81,14 +81,18 @@ const ProfileSettingsForm = () => {
                 className="grid sm:grid-cols-2 gap-4 justify-center items-center"
             >
                 <div>
-                    <Image
-                        src={parseUserAvatarUrl(userObj)}
-                        className="rounded-full"
-                        width={90}
-                        height={90}
-                        alt="User avatar"
-                        loader={({ src }) => src}
-                    />
+                    {
+                        userObj?.profile?.avatar && (
+                            <Image
+                                src={parseUserAvatarUrl(userObj)}
+                                className="rounded-full"
+                                width={90}
+                                height={90}
+                                alt="User avatar"
+                                loader={({ src }) => src}
+                            />
+                        )
+                    }
                 </div>
                 <StyledButton
                     name="Request password reset"
@@ -119,15 +123,20 @@ const ProfileSettingsForm = () => {
                     type="text"
                     required={false}
                 />
-                <InputField
-                    label="Display name"
-                    placeholder={userObj?.profile?.name}
-                    disabled
-                    name="displayName"
-                    type="text"
-                    required={false}
-                    icon={IdentificationIcon}
-                />
+                {
+                    userObj?.profile?.name && (
+                        <InputField
+                            label="Display name"
+                            placeholder={userObj?.profile?.name}
+                            disabled
+                            name="displayName"
+                            type="text"
+                            required={false}
+                            icon={IdentificationIcon}
+                        />
+                    )
+                }
+
                 <div
                     className="relative"
                 >

@@ -2,7 +2,10 @@ module github.com/natrongmbh/pocketbase-nextjs-template
 
 go 1.19
 
-require github.com/pocketbase/pocketbase v0.7.6
+require (
+	github.com/pocketbase/dbx v1.6.0
+	github.com/pocketbase/pocketbase v0.7.6
+)
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.6 // indirect
@@ -47,13 +50,13 @@ require (
 	github.com/mattn/go-isatty v0.0.16 // indirect
 	github.com/mattn/go-sqlite3 v1.14.15 // indirect
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
-	github.com/pocketbase/dbx v1.6.0 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20200410134404-eec4a21b6bb0 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/cobra v1.5.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.1 // indirect
+	github.com/yuin/goldmark v1.4.13 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	gocloud.dev v0.26.0 // indirect
 	golang.org/x/crypto v0.0.0-20220919173607-35f4265a4bc0 // indirect

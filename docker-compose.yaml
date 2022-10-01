@@ -9,12 +9,12 @@ services:
     volumes:
       - pb_data:/pb_data
 
-  ui:
-    build: ./ui/app/
-    ports:
-      - "3000:3000"
-    environment:
-      - ENV_API_URL=http://template.natron.io:8090
+  # ui:
+  #   build: ./ui/app/
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - ENV_API_URL=http://template.natron.io:8090
 
 
 volumes:
