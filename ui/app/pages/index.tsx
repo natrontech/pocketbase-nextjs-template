@@ -13,7 +13,15 @@ const Home: NextPage = () => {
     router.push('/dashboard');
   }
 
-  return <Login />
+  return (
+    <div>
+      {
+        !user && !loading && (
+          <Login />
+        )
+      }
+    </div>
+  )
 }
 
 export default Home

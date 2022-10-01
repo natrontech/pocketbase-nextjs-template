@@ -1,4 +1,4 @@
-import { ArrowLeftOnRectangleIcon, ArrowRightIcon, CodeBracketIcon, EnvelopeIcon, KeyIcon } from "@heroicons/react/24/solid";
+import { ArrowRightIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../contexts/userContext";
 import { GithubIcon, GoogleIcon } from "../../lib/Icons";
@@ -8,7 +8,10 @@ import InputField from "../general/forms/InputField";
 import Heading from "../general/typo/Heading";
 import SubHeading from "../general/typo/SubHeading";
 import { classNames } from "../../lib/design";
-import { EnvelopeOpenIcon } from "@heroicons/react/24/outline";
+import { EnvelopeOpenIcon, LockClosedIcon } from "@heroicons/react/24/outline";
+import { ClientResponseError } from 'pocketbase';
+import { validateEmail } from "../../lib/validate";
+import Image from "next/image";
 
 const Login = () => {
     const [provider, setProvider] = useState<any>();
@@ -24,11 +27,46 @@ const Login = () => {
         // check if values are empty
         if (email.value === "" || password.value === "") {
             Toast("Please fill in all fields", ToastType.warning);
+            document.getElementById("email")?.focus();
+            return;
+        }
+
+        if (!validateEmail(email.value)) {
+            Toast("Please enter a valid email address", ToastType.warning);
             return;
         }
 
         // login
         signInWithEmail(email.value, password.value, false);
+    }
+
+    const handleForgotPassword = async () => {
+        // get values from input fields
+        const email = document.getElementById("recoverEmail") as HTMLInputElement;
+
+        // check if values are empty
+        if (email.value === "") {
+            Toast("Please fill in all fields", ToastType.warning);
+            document.getElementById("recoverEmail")?.focus();
+            return;
+        }
+
+        if (!validateEmail(email.value)) {
+            Toast("Please enter a valid email address", ToastType.warning);
+            return;
+        }
+
+        // Request password reset
+        await client.users.requestPasswordReset('test@example.com')
+            .then(() => {
+                Toast("Email sent", ToastType.success);
+                // value to ""
+                email.value = "";
+                setShowForgotPassword(false);
+            })
+            .catch((error: ClientResponseError) => {
+                Toast(error.message, ToastType.error);
+            })
     }
 
     useEffect(() => {
@@ -38,7 +76,7 @@ const Login = () => {
         }
 
         getAuthProviders()
-            .catch((error) => {
+            .catch((error: ClientResponseError) => {
                 console.log(error);
             })
     }, [client.users])
@@ -68,26 +106,25 @@ const Login = () => {
                 <div
                     className="w-46 h-46 mx-auto items-center flex justify-center"
                 >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                         className="rounded-full"
                         src="/images/logo/pocketbase-nextjs-template-logo.png"
-                        alt="User"
+                        alt="Logo"
                         width={80}
                         height={80}
-                    // unoptimized={true}
+                        loader={({ src }) => src}
                     />
                 </div>
                 <Heading>
                     Pocketbase Next.js Template
                 </Heading>
                 <div
-                    className="relative"
+                    className="relative h-96"
                 >
                     <div
                         className={classNames(
                             showForgotPassword ? 'opacity-0 translate-y-3 -z-10 h-0' : 'opacity-100 translate-y-0',
-                            "flex flex-col space-y-4 items-center transition-all duration-150 ease-in-out w-full delay-75"
+                            "flex flex-col space-y-4 items-center transition-all duration-150 ease-in-out w-full"
                         )}
                     >
                         <SubHeading>
@@ -96,7 +133,6 @@ const Login = () => {
                         <InputField
                             name="email"
                             label="Email"
-                            placeholder="Email"
                             icon={EnvelopeIcon}
                             required={true}
                             type="email"
@@ -104,8 +140,7 @@ const Login = () => {
                         <InputField
                             name="password"
                             label="Password"
-                            placeholder="Password"
-                            icon={KeyIcon}
+                            icon={LockClosedIcon}
                             required={true}
                             type="password"
                         />
@@ -150,7 +185,7 @@ const Login = () => {
                     <div
                         className={classNames(
                             !showForgotPassword ? 'opacity-0 translate-y-3 -z-10 h-0' : 'opacity-100 translate-y-0',
-                            "flex flex-col space-y-4 items-center transition-all w-full delay-75"
+                            "flex flex-col space-y-4 items-center transition-all w-full"
                         )}
                     >
                         <SubHeading>
@@ -159,7 +194,6 @@ const Login = () => {
                         <InputField
                             name="recoverEmail"
                             label="Email"
-                            placeholder="Email"
                             icon={EnvelopeIcon}
                             required={true}
                             type="email"
@@ -170,7 +204,7 @@ const Login = () => {
                             type={StyledButtonType.Primary}
                             icon={EnvelopeOpenIcon}
                             iconAnimation={false}
-                            onClick={handleLogin}
+                            onClick={handleForgotPassword}
                         />
 
                         <StyledButton

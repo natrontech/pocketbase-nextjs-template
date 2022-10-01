@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # get arguments
 if [ $# -eq 0 ]; then
@@ -35,13 +35,12 @@ replace_version $1
 
 # color red
 RED='\033[0;31m'
-echo "\n"
 echo "${RED}Bumping version from $old_version to $version"
 WHITE='\033[0m'
 echo "${WHITE}"
 echo "============================="
 echo "Accept the changes? (y/n)"
-read accept
+read -r answer
 
 if [ "$accept" == "y" ]; then
     # replace VERSION?=0.0.0 in ../Makefile

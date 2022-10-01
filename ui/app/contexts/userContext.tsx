@@ -50,7 +50,7 @@ export const UserContextProvider = ({ children }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const signInWithEmail = async (username: string, password: string, remember: boolean) => {
+    const signInWithEmail = async (username: string, password: string) => {
         setLoading(true);
 
         await client.users.authViaEmail(username, password)

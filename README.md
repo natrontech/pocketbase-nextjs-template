@@ -97,7 +97,14 @@ You can deploy pocketbase-nextjs-template in your Kubernetes cluster, but you ha
 
 ### Environment Variables
 
-You need to set the following Environment Variables at your ui:
+You need to set the following Environment 
+
+#### Pocketbase
+
+- `POCKETBASE_DATA_DIR` - The directory where the Pocketbase data is stored. Default: `/pb_data`
+- `POCKETBASE_ENCRYPTION_KEY` - The encryption key for the Pocketbase database. Must be 32 characters long.
+
+#### UI
 
 - `ENV_API_URL` - The URL of the API, e.g. `https://template.natron.io` (without trailing slash, but /api at the end, must be accessible from the webclient)
 

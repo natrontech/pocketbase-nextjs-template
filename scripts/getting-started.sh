@@ -4,7 +4,7 @@
 
 # get the name of the project
 echo "What is the name of your project?"
-read project_name
+read -r project_name
 
 
 # Find every folder with the name "pocketbase-nextjs-template" and replace it with the name of your project
