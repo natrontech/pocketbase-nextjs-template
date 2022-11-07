@@ -1,4 +1,4 @@
-#!bin/sh
+#!/usr/bin/env bash
 
 # This script will look for any folder and file with the name "pocketbase-nextjs-template" and replace it with the name of your project
 
