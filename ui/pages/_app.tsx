@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import '../styles/fonts.css'
+import '@tremor/react/dist/esm/tremor.css';
 import type { AppProps } from 'next/app'
 import Layout from '../components/Layout'
 import { UserContextProvider } from '../contexts/userContext'

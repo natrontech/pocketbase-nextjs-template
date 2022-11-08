@@ -50,10 +50,10 @@ jobs:
       - uses: actions/checkout@v1
       - name: yarn install
         run: |
-          cd ./ui/app
+          cd ./ui
           yarn install
       - name: build
         run: |
-          cd ./ui/app
+          cd ./ui
           echo "ENV_API_URL=${{ secrets.ENV_API_URL }}" >> .env.production
           yarn build

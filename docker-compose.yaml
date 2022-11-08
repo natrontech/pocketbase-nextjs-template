@@ -10,7 +10,7 @@ services:
       - pb_data:/pb_data
 
   # ui:
-  #   build: ./ui/app/
+  #   build: ./ui/
   #   ports:
   #     - "3000:3000"
   #   environment:

@@ -68,7 +68,7 @@ There is a bash script that does this for you:
 - [./scripts/getting-started.sh](./scripts/getting-started.sh)
 
 Just run it and follow the instructions.  
-To deploy your app, you can containerize it with the included Dockerfile(s) under [./build/package/pocketbase](./build/package/pocketbase) and [./ui/app](./ui/app/).  
+To deploy your app, you can containerize it with the included Dockerfile(s) under [./build/package/pocketbase](./build/package/pocketbase) and [./ui](./ui/).  
 Or simply execute the docker-compose file [docker-compose.yaml](docker-compose.yaml) to run the app locally.  
 
 ### Open Source
@@ -125,7 +125,7 @@ services:
       - data:/data
 
   ui:
-    build: ./ui/app/
+    build: ./ui
     ports:
       - "3000:3000"
     environment:
